@@ -44,51 +44,6 @@ O resumo gerado é salvo com o texto original e a versao resumida e traduzido co
 - POST **/tasks**: Cria uma nova tarefa com o texto a ser resumido.
 - GET **/tasks**: Lista todas as tarefas criadas.
 
-# Tarefas a serem realizadas
-
-### No projeto Node.js
-
-- No POST **/tasks**, a API deve receber um texto e um idioma e enviar para o serviço Python para gerar o resumo no idioma solicitado.
-
-  #### Parâmetros que devem ser recebidos pela API:
-
-  - `text`: Texto a ser resumido.
-  - `lang`: Idioma para qual o texto original deve ser traduzido.
-
-  #### Idiomas suportados:
-
-  - `pt`: Português.
-  - `en`: Inglês.
-  - `es`: Espanhol.
-  - Caso o idioma não seja suportado, retornar um erro com status 400 e a mensagem "Language not supported".
-
-- Deve ser possível acessar o resumo de uma tarefa através do endpoint GET **/tasks/:id**.
-
-  ### Deve retornar um JSON com as propriedades:
-
-  - `id`: Identificador da tarefa.
-  - `text`: Texto original.
-  - `summary`: Resumo gerado pelo serviço Python.
-  - `lang`: Idioma para qual o texto foi traduzido(solicitado pelo usuário).
-
-- Deve ser possível remover uma tarefa através do endpoint DELETE **/tasks/:id**.
-- Persistir as informações das tarefas em um arquivo JSON.
-
-### No projeto Python
-
-- Implementar a lógica de resumo de texto utilizando LangChain(Prompt) no idioma solicitado.
-  ### O resumo deve ser retornado em formato JSON, com a propriedades:
-  - `summary`: Resumo gerado.
-
-## Em ambos os projetos
-
-- Deve possuir uma rota inicial(/) que retorne um JSON com a propriedade `message` contendo a mensagem "API is running".
-
-### Observações
-
-- Após a conclusão, suba o projeto no seu repositório pessoal e envie o link para o recrutador.
-- Caso tenha alguma dúvida, entre em contato com o recrutador.
-
 ## Texto de Exemplo
 
 ```
@@ -105,4 +60,3 @@ O médico sempre será quem aperta o botão final; e o juiz quem determina se um
 ```
 FONTE: https://www.bbc.com/portuguese/articles/c2kx2e74jyxo
 
-# Desejamos um bom desafio! 🚀
