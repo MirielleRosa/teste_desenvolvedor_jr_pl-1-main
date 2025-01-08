@@ -24,10 +24,18 @@ dev_node() {
     cd - || exit
 }
 
-# Função para executar o modo de desenvolvimento do Python
-dev_python() {
-    echo "Iniciando servidor Python no modo de desenvolvimento..."
-    
+# Função para executar o servidor Node.js no modo padrão
+start_node() {
+    echo "Iniciando servidor Node.js..."
+    cd node-api || exit
+    npm start
+    cd - || exit
+}
+
+# Função para executar o servidor Python
+start_python() {
+    echo "Iniciando servidor Python..."
+
     # Cria e ativa o ambiente virtual
     python -m venv .venv
 
@@ -41,7 +49,7 @@ dev_python() {
     fi
 
     cd python-llm || exit
-    uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
+    uvicorn app.main:app --host 127.0.0.1 --port 8000
 }
 
 # Verifica o comando passado como argumento
@@ -59,8 +67,11 @@ case $1 in
     dev-node)
         dev_node
         ;;
-    dev-python)
-        dev_python
+    start-node)
+        start_node
+        ;;
+    start-python)
+        start_python
         ;;
     *)
         echo "Comando inválido. Use um dos seguintes:"
@@ -68,6 +79,7 @@ case $1 in
         echo "  install-python   - Instala dependências do Python"
         echo "  install          - Instala todas as dependências"
         echo "  dev-node         - Inicia o servidor Node.js no modo dev"
-        echo "  dev-python       - Inicia o servidor Python no modo dev"
+        echo "  start-node       - Inicia o servidor Node.js"
+        echo "  start-python     - Inicia o servidor Python"
         ;;
 esac
