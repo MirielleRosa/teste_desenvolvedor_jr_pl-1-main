@@ -17,9 +17,30 @@ class LLMService:
     def summarize_text(self, text: str, lang: str) -> str:
 
         prompts = {
-            "pt": f"Resuma o seguinte texto em português em poucas linhas, fornecendo apenas o resumo traduzido, sem introduções, conclusões ou comentários adicionais:\n\n{text}",
-            "en": f"Summarize the following text in English in a few lines, providing only the translated summary, without introductions, conclusions, or additional comments:\n\n{text}",
-            "es": f"Resume el siguiente texto en español en pocas líneas, proporcionando solo el resumen traducido, sin introducciones, conclusiones ni comentarios adicionales:\n\n{text}",
+            "pt": f"""Você é um assistente de tradução e resumo. Dado um texto, sua tarefa é:
+                    1. Resumir o texto de forma concisa e clara em poucas palavras.
+                    2. Traduzir o resumo para o idioma solicitado (Português, no caso).
+
+                    Texto original: {text}
+                    Idioma de tradução: Português
+
+                    **Retorne apenas o resumo traduzido**, sem explicações ou qualquer outro texto adicional. Apenas o resumo em português!""",
+            "en": f"""You are an assistant for translation and summarization. Given a text, your task is:
+                    1. Summarize the text in a concise and clear manner in a few words.
+                    2. Translate the summary to the requested language (English in this case).
+
+                    Original text: {text}
+                    Translation language: English
+
+                    **Return only the translated summary**, without explanations or any extra text. Just the summary in English!""",
+            "es": f"""Eres un asistente de traducción y resumen. Dado un texto, tu tarea es:
+                    1. Resumir el texto de forma concisa y clara en pocas palabras.
+                    2. Traducir el resumen al idioma solicitado (Español en este caso).
+
+                    Texto original: {text}
+                    Idioma de traducción: Español
+
+                    **Devuelve solo el resumen traducido**, sin explicaciones ni texto adicional. ¡Solo el resumen en español!"""
         }
 
         if lang not in prompts:
